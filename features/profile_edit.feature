@@ -33,6 +33,7 @@ Feature: Edit profile
   Then I should see "Your profile has been successfully updated"
     And I should see "Alpha Centauri" within ".wrapper"
     And I should see "This is some text about me." within ".userstuff"
+		And 0 emails should be delivered
   When I follow "Edit My Profile"
     And I fill in "Title" with "Alternative title thingy"
     And I fill in "Location" with "Beta Centauri"
@@ -42,6 +43,7 @@ Feature: Edit profile
     And I should see "Alternative title thingy"
     And I should see "Beta Centauri" within ".wrapper"
     And I should see "This is some text about me and my colours." within ".userstuff"
+		And 0 emails should be delivered
   When I follow "Edit My Profile"
     And I fill in "Title" with ""
     And I fill in "Location" with ""
@@ -51,9 +53,9 @@ Feature: Edit profile
     And I should not see "Alternative title thingy"
     And I should not see "Beta Centauri" within ".wrapper"
     And I should not see "This is some text about me and my colours."
+		And 0 emails should be delivered
 
   Scenario: View and edit profile - email address - changing and displaying, and can't be the same as another user's
-
   Given the following activated users exist
     | login         | password   |
     | editname2     | password   |
@@ -64,7 +66,7 @@ Feature: Edit profile
     And I follow "Profile"
     And I follow "Edit My Profile"
   Then I should see "Edit My Profile"
-  When I fill in "Change Email" with "bob.bob.bob"
+	When I fill in "Change Email" with "bob.bob.bob"
     And I press "Update"
   Then I should see "You must authenticate"
     And 0 emails should be delivered
@@ -80,22 +82,14 @@ Feature: Edit profile
   When I fill in "Old password" with "password"
     And I press "Update"
   Then I should see "Your profile has been successfully updated"
+		And 1 email should be delivered to foo1@archiveofourown.com
   When I follow "My Preferences"
     And I check "Display Email Address"
     And I press "Update"
     And I follow "editname2"
     And I follow "Profile"
   Then I should see "My email address: valid2@archiveofourown.org"
-  When I follow "Log out"
-    And I am logged in as "duplicate" with password "password"
-    And I follow "duplicate"
-    And I follow "Profile"
-    And I follow "Edit My Profile"
-    And I fill in "Change Email" with "valid2@archiveofourown.org"
-    And I fill in "Old password" with "password"
-    And I press "Update"
-  Then I should see "Email has already been taken"
-    And I should not see "Your profile has been successfully updated"
+  
     
   Scenario: View and edit profile - date of birth - changing and displaying
 
@@ -128,6 +122,7 @@ Feature: Edit profile
     And I press "Update"
   Then I should see "Your profile has been successfully updated"
     And I should see "My birthday: 1980-03-31"
+		And 0 emails should be delivered
 
   Scenario: View and edit profile - change password
 
@@ -160,23 +155,10 @@ Feature: Edit profile
   When I am logged in as "editname2" with password "newpass1"
   Then I should see "Hi, editname2"
 	
-	Scenario: View and edit profile - change email
-
-	Given I am logged in as "editname2" with password "password"
-  When I follow "editname2"
-    And I follow "Profile" within ".navigation"
-		And I follow "Edit My Profile"
-		And I fill in "Old password" with "password"  
-		And I fill in "Change Email" with "test@example.com" 
-		And I press "Update"
-		Then I should see "Your profile has been successfully updated"
-		And 1 email should be delivered to test@example.com
-
-  Scenario: Manage pseuds - add, edit
+	Scenario: Manage pseuds - add, edit
 
   Given the following activated user exists
-    | login         | password   |
-    | editpseuds    | password   |
+    | login         | password   |thanks
     And I am logged in as "editpseuds" with password "password"
   Then I should see "Hi, editpseuds!"
     And I should see "Log out"
