@@ -147,7 +147,16 @@ class UserMailer < ActionMailer::Base
       :subject => "[#{ArchiveConfig.APP_NAME}] Generated password"
     )
   end
-
+	
+	  # Confirms to a user that their email was changed
+  def change_email(user)
+    @user = user
+    mail(
+      :to => user.email,
+      :subject => "[#{ArchiveConfig.APP_NAME}] Email changed"
+    )
+  end
+   
   ### WORKS NOTIFICATIONS ###
 
   # Sends email when a user is added as a co-author
