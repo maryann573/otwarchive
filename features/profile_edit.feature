@@ -82,7 +82,7 @@ Feature: Edit profile
   When I fill in "Old password" with "password"
     And I press "Update"
   Then I should see "Your profile has been successfully updated"
-		And 1 email should be delivered to foo1@archiveofourown.com
+		And 1 email should be delivered to foo1@archiveofourown.org
   When I follow "My Preferences"
     And I check "Display Email Address"
     And I press "Update"
@@ -158,7 +158,7 @@ Feature: Edit profile
 	Scenario: Manage pseuds - add, edit
 
   Given the following activated user exists
-    | login         | password   |thanks
+    | login         | password   |
     And I am logged in as "editpseuds" with password "password"
   Then I should see "Hi, editpseuds!"
     And I should see "Log out"
