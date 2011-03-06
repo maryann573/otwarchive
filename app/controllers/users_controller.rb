@@ -121,7 +121,7 @@ class UsersController < ApplicationController
   end
 	
 	
-	  def change_email
+	def change_email
     # have to reauthenticate to change email
     if params[:new_email] != @user.email
 			UserMailer.change_email(@user).deliver
@@ -137,7 +137,8 @@ class UsersController < ApplicationController
         end
       end
     end
-
+	end
+	
   def change_openid
     if params[:identity_url]
       @openid_url = params[:identity_url]
