@@ -82,7 +82,9 @@ Feature: Edit profile
   When I fill in "Old password" with "password"
     And I press "Update"
   Then I should see "Your profile has been successfully updated"
-		And 1 email should be delivered to foo1@archiveofourown.org
+	Then show me the emails
+
+		
   When I follow "My Preferences"
     And I check "Display Email Address"
     And I press "Update"
