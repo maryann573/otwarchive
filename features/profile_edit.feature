@@ -97,8 +97,7 @@ Feature: Edit profile
     And I fill in "Old password" with "password"
     And I press "Update"
   Then I should see "Email has already been taken"
-    And I should not see "Your profile has been successfully updated"
-		And 0 emails should be delivered
+    And I should not see "Your profile has been successfully updated
   
   Scenario: View and edit profile - date of birth - changing and displaying
 
