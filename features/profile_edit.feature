@@ -81,14 +81,15 @@ Feature: Edit profile
     And 0 emails should be delivered
   When I fill in "Old password" with "password"
     And I press "Update"
-  Then I should see "Your profile has been successfully updated"	
+  Then I should see "Your profile has been successfully updated"
+  Then show me the emails	
   When I follow "My Preferences"
     And I check "Display Email Address"
     And I press "Update"
     And I follow "editname2"
     And I follow "Profile"
   Then I should see "My email address: valid2@archiveofourown.org"
-	  When I follow "Log out"
+  When I follow "Log out"
     And I am logged in as "duplicate" with password "password"
     And I follow "duplicate"
     And I follow "Profile"
@@ -100,7 +101,6 @@ Feature: Edit profile
     And I should not see "Your profile has been successfully updated"
 		And 0 emails should be delivered
   
-    
   Scenario: View and edit profile - date of birth - changing and displaying
 
   Given the following activated users exist
@@ -134,8 +134,7 @@ Feature: Edit profile
     And I should see "My birthday: 1980-03-31"
 		And 0 emails should be delivered
 
-
-  Scenario: View and edit profile - change password
+	Scenario: View and edit profile - change password
 
   Given I am logged in as "editname2" with password "password"
   When I follow "editname2"
