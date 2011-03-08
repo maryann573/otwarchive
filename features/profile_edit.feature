@@ -81,10 +81,7 @@ Feature: Edit profile
     And 0 emails should be delivered
   When I fill in "Old password" with "password"
     And I press "Update"
-  Then I should see "Your profile has been successfully updated"
-	Then show me the emails
-
-		
+  Then I should see "Your profile has been successfully updated"	
   When I follow "My Preferences"
     And I check "Display Email Address"
     And I press "Update"
@@ -157,6 +154,18 @@ Feature: Edit profile
   When I am logged in as "editname2" with password "newpass1"
   Then I should see "Hi, editname2"
 	
+	Scenario: View and edit profile - change email
+
+  Given I am logged in as "editname2" with password "password"
+  When I follow "editname2"
+    And I follow "Profile"
+    And I follow "Edit My Profile"
+		And I fill in "Old password" with "password"
+	  And I fill in "Change Email" with "test@example.com"
+		And I press "Update"
+		Then I should see "Your profile has been successfully updated"
+		And 1 email should be deliviered
+		Then show me the emails
 	Scenario: Manage pseuds - add, edit
 
   Given the following activated user exists
