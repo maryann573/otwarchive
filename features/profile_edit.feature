@@ -88,6 +88,17 @@ Feature: Edit profile
     And I follow "editname2"
     And I follow "Profile"
   Then I should see "My email address: valid2@archiveofourown.org"
+	  When I follow "Log out"
+    And I am logged in as "duplicate" with password "password"
+    And I follow "duplicate"
+    And I follow "Profile"
+    And I follow "Edit My Profile"
+    And I fill in "Change Email" with "valid2@archiveofourown.org"
+    And I fill in "Old password" with "password"
+    And I press "Update"
+  Then I should see "Email has already been taken"
+    And I should not see "Your profile has been successfully updated"
+		And 0 emails should be delivered
   
     
   Scenario: View and edit profile - date of birth - changing and displaying
@@ -122,6 +133,7 @@ Feature: Edit profile
   Then I should see "Your profile has been successfully updated"
     And I should see "My birthday: 1980-03-31"
 		And 0 emails should be delivered
+
 
   Scenario: View and edit profile - change password
 
@@ -164,8 +176,8 @@ Feature: Edit profile
 	  And I fill in "Change Email" with "test@example.com"
 		And I press "Update"
 		Then I should see "Your profile has been successfully updated"
-		And 1 email should be delivered
-		Then show me the emails
+		And 1 email should be delivered to foo6@archiveofourown.org
+	
 	Scenario: Manage pseuds - add, edit
 
   Given the following activated user exists
