@@ -164,7 +164,7 @@ Feature: Edit profile
 	  And I fill in "Change Email" with "test@example.com"
 		And I press "Update"
 		Then I should see "Your profile has been successfully updated"
-		And 1 email should be deliviered
+		And 1 email should be delivered
 		Then show me the emails
 	Scenario: Manage pseuds - add, edit
 
