@@ -81,8 +81,7 @@ Feature: Edit profile
     And 0 emails should be delivered
   When I fill in "Old password" with "password"
     And I press "Update"
-  Then I should see "Your profile has been successfully updated"
-  Then show me the emails	
+  Then I should see "Your profile has been successfully updated"	
   When I follow "My Preferences"
     And I check "Display Email Address"
     And I press "Update"
