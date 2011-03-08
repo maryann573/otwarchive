@@ -131,8 +131,8 @@ Feature: Edit profile
   Then I should see "Your profile has been successfully updated"
     And I should see "My birthday: 1980-03-31"
 		And 0 emails should be delivered
-
-	Scenario: View and edit profile - change password
+		
+  Scenario: View and edit profile - change password
 
   Given I am logged in as "editname2" with password "password"
   When I follow "editname2"
