@@ -70,11 +70,10 @@ Feature: Edit profile
 	When I fill in "Change Email" with "bob.bob.bob"
     And I press "Update"
   Then I should see "You must authenticate"
-    And 0 emails should be delivered
-  When I fill in "Old password" with "password"
-    And I press "Update"
+    When I fill in "Old password" with "password"
+  And I press "Update"
   Then I should see "Email does not seem to be a valid address"
-    And 0 emails should be delivered
+		And 0 emails should be delivered
   When I fill in "Change Email" with "valid2@archiveofourown.org"
     And I fill in "Old password" with "passw"
     And I press "Update"
@@ -176,7 +175,6 @@ Feature: Edit profile
 		And I press "Update"
 		Then I should see "Your profile has been successfully updated"
 		And 1 email should be delivered to foo6@archiveofourown.org
-		
 		
 	Scenario: Manage pseuds - add, edit
 
