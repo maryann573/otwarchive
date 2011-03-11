@@ -82,7 +82,8 @@ Feature: Edit profile
     And 0 emails should be delivered
   When I fill in "Old password" with "password"
     And I press "Update"
-  Then I should see "Your profile has been successfully updated"	
+  Then I should see "Your profile has been successfully updated"
+		And 1 email should be delivered
   When I follow "My Preferences"
     And I check "Display Email Address"
     And I press "Update"
@@ -156,7 +157,6 @@ Feature: Edit profile
     And I press "Change Password"
   Then I should see "Your password has been changed"
 		And 1 email should be delivered to foo5@archiveofourown.org
-		Then show me the emails
   When I follow "Log out"
     And I fill in "User name" with "editname2"
     And I fill in "Password" with "password"
