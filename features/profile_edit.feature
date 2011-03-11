@@ -156,6 +156,7 @@ Feature: Edit profile
     And I press "Change Password"
   Then I should see "Your password has been changed"
 		And 1 email should be delivered to foo5@archiveofourown.org
+		Then show me the emails
   When I follow "Log out"
     And I fill in "User name" with "editname2"
     And I fill in "Password" with "password"
@@ -175,7 +176,7 @@ Feature: Edit profile
 		And I press "Update"
 		Then I should see "Your profile has been successfully updated"
 		And 1 email should be delivered to foo6@archiveofourown.org
-		Then show me the emails
+		
 		
 	Scenario: Manage pseuds - add, edit
 
