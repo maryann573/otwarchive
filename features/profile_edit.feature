@@ -56,6 +56,7 @@ Feature: Edit profile
 		And 0 emails should be delivered
 
   Scenario: View and edit profile - email address - changing and displaying, and can't be the same as another user's
+	
   Given the following activated users exist
     | login         | password   |
     | editname2     | password   |
@@ -87,7 +88,7 @@ Feature: Edit profile
     And I press "Update"
     And I follow "editname2"
     And I follow "Profile"
-  Then I should see "My email address: valid2@archiveofourown.org"
+  Then I should see "My email address: valid2@archiveofourown.org
   When I follow "Log out"
     And I am logged in as "duplicate" with password "password"
     And I follow "duplicate"
@@ -97,7 +98,7 @@ Feature: Edit profile
     And I fill in "Old password" with "password"
     And I press "Update"
   Then I should see "Email has already been taken"
-    And I should not see "Your profile has been successfully updated
+    And I should not see "Your profile has been successfully updated"
   
   Scenario: View and edit profile - date of birth - changing and displaying
 
@@ -155,6 +156,7 @@ Feature: Edit profile
     And I press "Change Password"
   Then I should see "Your password has been changed"
 		And 1 email should be delivered
+		Then show me the emails
   When I follow "Log out"
     And I fill in "User name" with "editname2"
     And I fill in "Password" with "password"
@@ -174,7 +176,8 @@ Feature: Edit profile
 		And I press "Update"
 		Then I should see "Your profile has been successfully updated"
 		And 1 email should be delivered to foo6@archiveofourown.org
-	
+		Then showme the emails
+		
 	Scenario: Manage pseuds - add, edit
 
   Given the following activated user exists
