@@ -73,7 +73,7 @@ Feature: Edit profile
     When I fill in "Old password" with "password"
   And I press "Update"
   Then I should see "Email does not seem to be a valid address"
-		And 0 emails should be delivered
+		Then show me the emails
   When I fill in "Change Email" with "valid2@archiveofourown.org"
     And I fill in "Old password" with "passw"
     And I press "Update"
@@ -82,7 +82,6 @@ Feature: Edit profile
   When I fill in "Old password" with "password"
     And I press "Update"
   Then I should see "Your profile has been successfully updated"
-		And 4 emails should be delivered
   When I follow "My Preferences"
     And I check "Display Email Address"
     And I press "Update"
