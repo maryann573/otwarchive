@@ -73,7 +73,7 @@ Feature: Edit profile
     When I fill in "Old password" with "password"
   And I press "Update"
   Then I should see "Email does not seem to be a valid address"
-		Then show me the emails
+		And 0 emails should be delivered
   When I fill in "Change Email" with "valid2@archiveofourown.org"
     And I fill in "Old password" with "passw"
     And I press "Update"
@@ -162,18 +162,6 @@ Feature: Edit profile
   Then I should see "The password you entered doesn't match our records. Please try again or click the 'forgot password' link below."
   When I am logged in as "editname2" with password "newpass1"
   Then I should see "Hi, editname2"
-	
-	Scenario: View and edit profile - change email
-
-  Given I am logged in as "editname2" with password "password"
-  When I follow "editname2"
-    And I follow "Profile"
-    And I follow "Edit My Profile"
-		And I fill in "Old password" with "password"
-	  And I fill in "Change Email" with "test@example.com"
-		And I press "Update"
-		Then I should see "Your profile has been successfully updated"
-		And 1 email should be delivered to foo6@archiveofourown.org
 		
 	Scenario: Manage pseuds - add, edit
 
