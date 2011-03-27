@@ -70,6 +70,7 @@ Feature: Edit profile
 	When I fill in "Change Email" with "bob.bob.bob"
     And I press "Update"
   Then I should see "You must authenticate"
+	   And 0 emails should be delivered
     When I fill in "Old password" with "password"
   And I press "Update"
   Then I should see "Email does not seem to be a valid address"
@@ -167,6 +168,7 @@ Feature: Edit profile
 
   Given the following activated user exists
     | login         | password   |
+		| editpseuds    | password   |
     And I am logged in as "editpseuds" with password "password"
   Then I should see "Hi, editpseuds!"
     And I should see "Log out"
